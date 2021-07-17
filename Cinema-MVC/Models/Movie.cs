@@ -10,6 +10,24 @@ namespace Cinema_MVC.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime Showtime { get; set; }
+        public virtual List<Showing> Showings { get; set; }
+
+        public Movie()
+        {
+            if (Showings == null)
+            {
+                Showings = new List<Showing>();
+            }
+        }
+
+        public Movie(String MovieName)
+        {
+            if (Showings == null)
+            {
+                Showings = new List<Showing>();
+            }
+
+            Name = MovieName;
+        }
     }
 }

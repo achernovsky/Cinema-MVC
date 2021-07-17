@@ -194,6 +194,14 @@
     <Compile Include="Migrations\202107171509379_AddCustomerToOrder.Designer.cs">
       <DependentUpon>202107171509379_AddCustomerToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107171947581_AddShowing.cs" />
+    <Compile Include="Migrations\202107171947581_AddShowing.Designer.cs">
+      <DependentUpon>202107171947581_AddShowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107171957337_AddTicket.cs" />
+    <Compile Include="Migrations\202107171957337_AddTicket.Designer.cs">
+      <DependentUpon>202107171957337_AddTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -201,6 +209,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Showing.cs" />
+    <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -294,6 +304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107171509379_AddCustomerToOrder.resx">
       <DependentUpon>202107171509379_AddCustomerToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107171947581_AddShowing.resx">
+      <DependentUpon>202107171947581_AddShowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107171957337_AddTicket.resx">
+      <DependentUpon>202107171957337_AddTicket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

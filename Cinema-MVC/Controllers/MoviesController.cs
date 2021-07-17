@@ -12,7 +12,7 @@ namespace Cinema_MVC.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movie = new Movie() { Name = "Black Widow" };
+            var movie = new Movie() { Name = "Black Widow", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." };
             return View(movie);
         }
     }
