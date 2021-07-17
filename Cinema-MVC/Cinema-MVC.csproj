@@ -186,6 +186,14 @@
     <Compile Include="Migrations\202107141834078_AddOrder.Designer.cs">
       <DependentUpon>202107141834078_AddOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107171452276_AddDescriptiomAndShowtimeToMovies.cs" />
+    <Compile Include="Migrations\202107171452276_AddDescriptiomAndShowtimeToMovies.Designer.cs">
+      <DependentUpon>202107171452276_AddDescriptiomAndShowtimeToMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107171509379_AddCustomerToOrder.cs" />
+    <Compile Include="Migrations\202107171509379_AddCustomerToOrder.Designer.cs">
+      <DependentUpon>202107171509379_AddCustomerToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -280,6 +288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107141834078_AddOrder.resx">
       <DependentUpon>202107141834078_AddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107171452276_AddDescriptiomAndShowtimeToMovies.resx">
+      <DependentUpon>202107171452276_AddDescriptiomAndShowtimeToMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107171509379_AddCustomerToOrder.resx">
+      <DependentUpon>202107171509379_AddCustomerToOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
