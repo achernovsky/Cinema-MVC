@@ -1,8 +1,13 @@
-﻿@model Cinema_MVC.Models.Movie;
+﻿@model Cinema_MVC.Models.Movie
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
+<h1>@Model.Name</h1>
+<img src="@Model.ImageUrl" />
+<br />
+<br />
+<p>@Model.Description</p>
+<a href="@("/Movies/Book/"+Model.Id)" class="btn btn-success" role="button">Buy Tickets</a>
+<a href="/Movies/" class="btn btn-primary" role="button">Back to movies list</a>
