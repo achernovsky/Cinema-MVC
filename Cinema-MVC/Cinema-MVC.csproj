@@ -227,6 +227,10 @@
     <Compile Include="Migrations\202107181142181_EditModels.Designer.cs">
       <DependentUpon>202107181142181_EditModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107181744256_DataAnnotationsToMovie.cs" />
+    <Compile Include="Migrations\202107181744256_DataAnnotationsToMovie.Designer.cs">
+      <DependentUpon>202107181744256_DataAnnotationsToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\User.cs" />
@@ -352,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107181142181_EditModels.resx">
       <DependentUpon>202107181142181_EditModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107181744256_DataAnnotationsToMovie.resx">
+      <DependentUpon>202107181744256_DataAnnotationsToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
