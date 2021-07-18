@@ -2,23 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Cinema_MVC.Models;
 
-namespace Cinema_MVC.Models
+namespace Cinema_MVC.Dtos
 {
-    public class Movie
+    public class MovieDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public List<Showing> Showings { get; set; }
-
-        public Movie()
-        {
-            if (Showings == null)
-            {
-                Showings = new List<Showing>();
-            }
-        }
     }
 }

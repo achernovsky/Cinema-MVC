@@ -15,8 +15,8 @@ namespace Cinema_MVC.Models
                 return Tickets.Sum(t => t.Price);
             }
         }
-        public virtual List<Ticket> Tickets { get; set; }
-        public virtual User User { get; set; }
+        public List<Ticket> Tickets { get; set; }
+        public User User { get; set; }
         public Order()
         {
             if (Tickets == null)

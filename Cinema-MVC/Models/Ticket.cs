@@ -10,7 +10,7 @@ namespace Cinema_MVC.Models
         public int Id { get; set; }
         public int Seat { get; set; }
         public double Price { get; set; }
-        public virtual Order Order { get; set; }
-        public virtual Showing Showing { get; set; }
+        public Order Order { get; set; }
+        public Showing Showing { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace Cinema_MVC.Models
         public int Id { get; set; }
         public DateTime Showtime { get; set; }
         public List<int> SeatList { get; set; }
-        public virtual Movie Movie { get; set; }
-        public virtual List<Ticket> Tickets { get; set; }
+        public Movie Movie { get; set; }
+        public List<Ticket> Tickets { get; set; }
 
         public Showing()
         {
