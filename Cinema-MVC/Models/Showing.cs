@@ -12,17 +12,5 @@ namespace Cinema_MVC.Models
         public List<int> SeatList { get; set; }
         public Movie Movie { get; set; }
         public List<Ticket> Tickets { get; set; }
-
-        public Showing()
-        {
-            if (Tickets == null)
-            {
-                Tickets = new List<Ticket>();
-            }
-            if (SeatList == null)
-            {
-                SeatList = new List<int>(new int[] { 1, 2, 3, 4, 5 });
-            }
-        }
     }
 }

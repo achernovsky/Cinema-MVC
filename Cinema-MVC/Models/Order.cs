@@ -17,12 +17,5 @@ namespace Cinema_MVC.Models
         }
         public List<Ticket> Tickets { get; set; }
         public User User { get; set; }
-        public Order()
-        {
-            if (Tickets == null)
-            {
-                Tickets = new List<Ticket>();
-            }
-        }
     }
 }

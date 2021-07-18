@@ -50,5 +50,18 @@ namespace Cinema_MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult New()
+        {
+            var movie = new MovieDto();
+            return View(movie);
+        }
+        public ActionResult Save(MovieDto movieDto)
+        {
+            var movie = Mapper.Map<MovieDto, Movie>(movieDto);
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+            return RedirectToAction("", "Movies");
+        }
     }
 }

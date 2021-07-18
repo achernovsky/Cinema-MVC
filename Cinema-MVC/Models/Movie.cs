@@ -12,13 +12,5 @@ namespace Cinema_MVC.Models
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public List<Showing> Showings { get; set; }
-
-        public Movie()
-        {
-            if (Showings == null)
-            {
-                Showings = new List<Showing>();
-            }
-        }
     }
 }
