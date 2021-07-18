@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cinema_MVC.Models;
+using Cinema_MVC.Dtos;
 using Cinema_MVC.ViewModels;
+using AutoMapper;
 
 namespace Cinema_MVC.Controllers
 {
@@ -27,23 +29,21 @@ namespace Cinema_MVC.Controllers
         public ActionResult Index()
         {
             var movies = _context.Movies.ToList();
+            var moviesDtos = movies.Select(Mapper.Map<Movie, MovieDto>).ToList();
             var viewModel = new MoviesViewModel()
             {
-                Movies = movies
+                Movies = moviesDtos
             };
             return View(viewModel);
         }
         public ActionResult Details(int id)
         {
-/*            if (id > movies.Count)
-                return HttpNotFound();
-
-            var movie = movies[id - 1];*/
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
             if (movie == null)
                 return HttpNotFound();
-            
-            return View(movie);
+
+            var movieDto = Mapper.Map<Movie, MovieDto>(movie);
+            return View(movieDto);
         }
 
         public ActionResult Book(int id)
