@@ -54,14 +54,31 @@ namespace Cinema_MVC.Controllers
         public ActionResult New()
         {
             var movie = new MovieDto();
-            return View(movie);
+            return View("MovieForm",movie);
         }
         public ActionResult Save(MovieDto movieDto)
         {
-            var movie = Mapper.Map<MovieDto, Movie>(movieDto);
-            _context.Movies.Add(movie);
+            if(movieDto.Id == 0)
+            {
+                var movie = Mapper.Map<MovieDto, Movie>(movieDto);
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movieDto.Id);
+                Mapper.Map(movieDto, movieInDb);
+            }
             _context.SaveChanges();
             return RedirectToAction("", "Movies");
+        }
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+
+            var movieDto = Mapper.Map<Movie, MovieDto>(movie);
+            return View("MovieForm", movieDto);
         }
     }
 }
