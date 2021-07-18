@@ -8,10 +8,21 @@ namespace Cinema_MVC.Models
     public class Order
     {
         public int Id { get; set; }
-        public Movie Movie { get; set; }
-        public int MovieId { get; set; }
-        public Customer Customer { get; set; }
-        public int CustomerId { get; set; }
-        public int NumOfTickets { get; set; }
+        public double TotalPrice
+        {
+            get
+            {
+                return Tickets.Sum(t => t.Price);
+            }
+        }
+        public virtual List<Ticket> Tickets { get; set; }
+        public virtual User User { get; set; }
+        public Order()
+        {
+            if (Tickets == null)
+            {
+                Tickets = new List<Ticket>();
+            }
+        }
     }
 }

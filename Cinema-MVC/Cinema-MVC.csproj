@@ -202,9 +202,25 @@
     <Compile Include="Migrations\202107171957337_AddTicket.Designer.cs">
       <DependentUpon>202107171957337_AddTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107172003495_AddTicketstoOrder.cs" />
+    <Compile Include="Migrations\202107172003495_AddTicketstoOrder.Designer.cs">
+      <DependentUpon>202107172003495_AddTicketstoOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107172009387_EditOrder.cs" />
+    <Compile Include="Migrations\202107172009387_EditOrder.Designer.cs">
+      <DependentUpon>202107172009387_EditOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107172012092_EditUserProps.cs" />
+    <Compile Include="Migrations\202107172012092_EditUserProps.Designer.cs">
+      <DependentUpon>202107172012092_EditUserProps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107172307543_AddImageToMovies.cs" />
+    <Compile Include="Migrations\202107172307543_AddImageToMovies.Designer.cs">
+      <DependentUpon>202107172307543_AddImageToMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -213,6 +229,7 @@
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MoviesVievModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -271,10 +288,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -310,6 +327,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107171957337_AddTicket.resx">
       <DependentUpon>202107171957337_AddTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107172003495_AddTicketstoOrder.resx">
+      <DependentUpon>202107172003495_AddTicketstoOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107172009387_EditOrder.resx">
+      <DependentUpon>202107172009387_EditOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107172012092_EditUserProps.resx">
+      <DependentUpon>202107172012092_EditUserProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107172307543_AddImageToMovies.resx">
+      <DependentUpon>202107172307543_AddImageToMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

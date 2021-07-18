@@ -10,6 +10,7 @@ namespace Cinema_MVC.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ImageUrl { get; set; }
         public virtual List<Showing> Showings { get; set; }
 
         public Movie()
@@ -20,7 +21,7 @@ namespace Cinema_MVC.Models
             }
         }
 
-        public Movie(String MovieName)
+        public Movie(string MovieName)
         {
             if (Showings == null)
             {

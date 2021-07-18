@@ -20,9 +20,11 @@ namespace Cinema_MVC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<User> CinemaUsers { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Showing> Showings { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
