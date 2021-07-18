@@ -6,7 +6,7 @@ using Cinema_MVC.Models;
 
 namespace Cinema_MVC.ViewModels
 {
-    public class MoviesVievModel
+    public class MoviesViewModel
     {
         public List<Movie> Movies { get; set; }
     }
