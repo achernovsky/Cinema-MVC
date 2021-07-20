@@ -14,5 +14,6 @@ namespace Cinema_MVC.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public List<Showing> Showings { get; set; }    }
+        public double ticketPrice { get; set; }
+    }
 }

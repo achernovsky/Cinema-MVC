@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Cinema_MVC.Models;
 using Cinema_MVC.ViewModels;
-using AutoMapper;
 
 namespace Cinema_MVC.Controllers
 {
@@ -40,6 +39,7 @@ namespace Cinema_MVC.Controllers
 
         public ActionResult Book(int id)
         {
+            
             return View();
         }
 

@@ -9,8 +9,14 @@ namespace Cinema_MVC.Models
     {
         public int Id { get; set; }
         public DateTime Showtime { get; set; }
-        public List<int> SeatList { get; set; }
         public Movie Movie { get; set; }
-        public List<Ticket> Tickets { get; set; }
+        public int MovieId { get; set; }
+        public int numOfRows { get; set; }
+        public int numOfSeatsPerRow { get; set; }
+        public Showing(int rows, int seats)
+        {
+            numOfRows = rows;
+            numOfSeatsPerRow = seats;
+        }
     }
 }

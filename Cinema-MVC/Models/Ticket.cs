@@ -8,9 +8,9 @@ namespace Cinema_MVC.Models
     public class Ticket
     {
         public int Id { get; set; }
-        public int Seat { get; set; }
-        public double Price { get; set; }
-        public Order Order { get; set; }
-        public Showing Showing { get; set; }
+        public Movie Movie { get; set; }
+        public int MovieId { get; set; }
+        public int rowNum { get; set; }
+        public int seatNum { get; set; }
     }
 }

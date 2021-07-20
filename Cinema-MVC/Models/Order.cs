@@ -8,13 +8,7 @@ namespace Cinema_MVC.Models
     public class Order
     {
         public int Id { get; set; }
-        public double TotalPrice
-        {
-            get
-            {
-                return Tickets.Sum(t => t.Price);
-            }
-        }
+        public double TotalPrice { get; set; }
         public List<Ticket> Tickets { get; set; }
         public User User { get; set; }
     }

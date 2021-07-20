@@ -229,6 +229,18 @@
     <Compile Include="Migrations\202107181744256_DataAnnotationsToMovie.Designer.cs">
       <DependentUpon>202107181744256_DataAnnotationsToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107201122483_AddTicketPriceToMovie.cs" />
+    <Compile Include="Migrations\202107201122483_AddTicketPriceToMovie.Designer.cs">
+      <DependentUpon>202107201122483_AddTicketPriceToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107201410401_AddSeatsToShowing.cs" />
+    <Compile Include="Migrations\202107201410401_AddSeatsToShowing.Designer.cs">
+      <DependentUpon>202107201410401_AddSeatsToShowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107201456484_EditTicketModel.cs" />
+    <Compile Include="Migrations\202107201456484_EditTicketModel.Designer.cs">
+      <DependentUpon>202107201456484_EditTicketModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\User.cs" />
@@ -241,6 +253,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
+    <Compile Include="ViewModels\ShowingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -357,6 +370,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107181744256_DataAnnotationsToMovie.resx">
       <DependentUpon>202107181744256_DataAnnotationsToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201122483_AddTicketPriceToMovie.resx">
+      <DependentUpon>202107201122483_AddTicketPriceToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201410401_AddSeatsToShowing.resx">
+      <DependentUpon>202107201410401_AddSeatsToShowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201456484_EditTicketModel.resx">
+      <DependentUpon>202107201456484_EditTicketModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
