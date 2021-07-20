@@ -38,7 +38,7 @@ namespace Cinema_MVC.Controllers
             {
                 var newShowing = new Showing()
                 {
-                    Movie = _context.Movies.SingleOrDefault(m => m.Id == showing.MovieId),
+                    Movie = _context.Movies.SingleOrDefault(s => s.Id == showing.MovieId),
                     Showtime = showing.Showtime
                 };
                 _context.Showings.Add(newShowing);
@@ -61,6 +61,29 @@ namespace Cinema_MVC.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("", "Movies/Book/" + showingInDB.MovieId);
+        }
+
+        public ActionResult Book(int id)
+        {
+            var showing = _context.Showings.SingleOrDefault(s => s.Id == id);
+            if (showing == null)
+                return HttpNotFound();
+
+            var ticketsOrdered = _context.Tickets.Where(t => t.Showtime == showing.Showtime).ToList();
+
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == showing.MovieId);
+            if (movie == null)
+                return HttpNotFound();
+
+            var ticket = new Ticket { Movie = movie, MovieId = movie.Id, Showtime = showing.Showtime };
+
+            var viewModel = new TicketsViewModel { Ticket = ticket, TicketsOrdered = ticketsOrdered, Showing = showing };
+            return View(viewModel); 
+        }
+
+        public ActionResult OrderTicket(Ticket ticket)
+        {
+            return View();
         }
     }
 }

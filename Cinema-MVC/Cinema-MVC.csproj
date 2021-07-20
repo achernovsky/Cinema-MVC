@@ -246,6 +246,18 @@
     <Compile Include="Migrations\202107201807252_AddRequirementsToShowing.Designer.cs">
       <DependentUpon>202107201807252_AddRequirementsToShowing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107201928188_AddShowtimeToTicket.cs" />
+    <Compile Include="Migrations\202107201928188_AddShowtimeToTicket.Designer.cs">
+      <DependentUpon>202107201928188_AddShowtimeToTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107202105009_AddOrderedSeats.cs" />
+    <Compile Include="Migrations\202107202105009_AddOrderedSeats.Designer.cs">
+      <DependentUpon>202107202105009_AddOrderedSeats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107202312289_AddNumOfTickets.cs" />
+    <Compile Include="Migrations\202107202312289_AddNumOfTickets.Designer.cs">
+      <DependentUpon>202107202312289_AddNumOfTickets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\User.cs" />
@@ -260,6 +272,7 @@
     <Compile Include="ViewModels\MovieShowingViewModel.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
     <Compile Include="ViewModels\ShowingViewModel.cs" />
+    <Compile Include="ViewModels\TicketsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -322,6 +335,7 @@
     <Content Include="Views\Movies\MovieForm.cshtml" />
     <Content Include="Views\Movies\Book.cshtml" />
     <Content Include="Views\Showings\MovieShowingForm.cshtml" />
+    <Content Include="Views\Showings\Book.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -390,6 +404,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107201807252_AddRequirementsToShowing.resx">
       <DependentUpon>202107201807252_AddRequirementsToShowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107201928188_AddShowtimeToTicket.resx">
+      <DependentUpon>202107201928188_AddShowtimeToTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107202105009_AddOrderedSeats.resx">
+      <DependentUpon>202107202105009_AddOrderedSeats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107202312289_AddNumOfTickets.resx">
+      <DependentUpon>202107202312289_AddNumOfTickets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

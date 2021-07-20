@@ -1,0 +1,24 @@
+﻿@model Cinema_MVC.ViewModels.TicketsViewModel
+@{
+    ViewBag.Title = "Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    List<string> tackenSeats = new List<string>();
+    foreach (var ticket in Model.TicketsOrdered)
+    {
+        tackenSeats.Add(ticket.rowNum + " " + ticket.seatNum);
+    }
+}
+<h2 class="text-center">@Model.Ticket.Movie.Name</h2>
+<h4 class="text-center">Showtime: @Model.Ticket.Showtime</h4>
+
+@using (Html.BeginForm("OrderTicket", "Showings", FormMethod.Post))
+{
+
+
+
+}
+
+    

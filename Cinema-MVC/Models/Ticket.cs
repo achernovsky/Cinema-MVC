@@ -10,7 +10,9 @@ namespace Cinema_MVC.Models
         public int Id { get; set; }
         public Movie Movie { get; set; }
         public int MovieId { get; set; }
+        public DateTime Showtime { get; set; }
         public int rowNum { get; set; }
         public int seatNum { get; set; }
+        public int numOfTickets { get; set; }
     }
 }
