@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Cinema_MVC.Models;
-using Cinema_MVC.Dtos;
 using Cinema_MVC.ViewModels;
 using AutoMapper;
 
@@ -22,10 +21,10 @@ namespace Cinema_MVC.Controllers
         public ActionResult Index()
         {
             var movies = _context.Movies.ToList();
-            var moviesDtos = movies.Select(Mapper.Map<Movie, MovieDto>).ToList();
+
             var viewModel = new MoviesViewModel()
             {
-                Movies = moviesDtos
+                Movies = movies
             };
             return View(viewModel);
         }
@@ -36,8 +35,7 @@ namespace Cinema_MVC.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var movieDto = Mapper.Map<Movie, MovieDto>(movie);
-            return View(movieDto);
+            return View(movie);
         }
 
         public ActionResult Book(int id)
@@ -47,25 +45,26 @@ namespace Cinema_MVC.Controllers
 
         public ActionResult New()
         {
-            var movie = new MovieDto();
+            var movie = new Movie();
             return View("MovieForm",movie);
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult Save(MovieDto movieDto)
+        public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
-                return View("MovieForm", movieDto);
+                return View("MovieForm", movie);
 
-            if(movieDto.Id == 0)
+            if(movie.Id == 0)
             {
-                var movie = Mapper.Map<MovieDto, Movie>(movieDto);
                 _context.Movies.Add(movie);
             }
             else
             {
-                var movieInDb = _context.Movies.Single(m => m.Id == movieDto.Id);
-                Mapper.Map(movieDto, movieInDb);
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.Description = movie.Description;
+                movieInDb.ImageUrl = movie.ImageUrl;
             }
             _context.SaveChanges();
             return RedirectToAction("", "Movies");
@@ -76,8 +75,7 @@ namespace Cinema_MVC.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var movieDto = Mapper.Map<Movie, MovieDto>(movie);
-            return View("MovieForm", movieDto);
+            return View("MovieForm", movie);
         }
 
         public ActionResult Delete(int id)
