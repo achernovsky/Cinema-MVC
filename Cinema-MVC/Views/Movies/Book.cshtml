@@ -1,24 +1,17 @@
 ﻿@model Cinema_MVC.ViewModels.ShowingViewModel
 @{
-    ViewBag.Title = "Book";
+    ViewBag.Title = "Book Tickets";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Book</h2>
+<h2>Select Showtime:</h2>
 
 <table class="table">
-    <tr class="table-info">
-        <th>Movie</th>
-        <th>Screening Time</th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.showings)
+    @foreach (var showing in Model.showings)
     {
-
-<tr class="table-light">
-    <td>@item.Movie.Name</td>
-    <td>@item.Showtime.ToString("g")</td>
-    <td> <a href="@("/Showing/Book/"+item.Id)">Book Tickets</a></td>
-</tr>}
+    <tr class="table-light">
+        <td>@showing.Showtime.ToString()</td>
+        <td> <a href="@("/Showing/Book/"+showing.Id)" class="btn btn-success" role="button">Book Tickets</a></td>
+    </tr>}
 </table>

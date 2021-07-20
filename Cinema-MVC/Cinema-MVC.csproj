@@ -174,7 +174,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
-    <Compile Include="Controllers\ShowingController.cs" />
+    <Compile Include="Controllers\ShowingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -321,7 +321,7 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\MovieForm.cshtml" />
     <Content Include="Views\Movies\Book.cshtml" />
-    <Content Include="Views\Showing\MovieShowingForm.cshtml" />
+    <Content Include="Views\Showings\MovieShowingForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
