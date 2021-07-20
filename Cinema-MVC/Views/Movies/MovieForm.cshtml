@@ -18,11 +18,11 @@
         @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Description)
     </div>
-@*    <div class="form-group">
-        @Html.LabelFor(m => m.Showings)
-        @Html.DropDownListFor(m => m.Showings, new SelectList(Model.Showings, "Id", "Showtime"), "", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Showings)
-    </div>*@
+    @*    <div class="form-group">
+            @Html.LabelFor(m => m.Showings)
+            @Html.DropDownListFor(m => m.Showings, new SelectList(Model.Showings, "Id", "Showtime"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Showings)
+        </div>*@
     <div class="form-group">
         @Html.LabelFor(m => m.ImageUrl)
         @Html.TextBoxFor(m => m.ImageUrl, new { @class = "form-control" })
@@ -31,4 +31,8 @@
     @Html.HiddenFor(m => m.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }
