@@ -39,8 +39,19 @@ namespace Cinema_MVC.Controllers
 
         public ActionResult Book(int id)
         {
-            
-            return View();
+            ShowingViewModel viewModel;
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+            else
+                viewModel = new ShowingViewModel(_context.Showings.Where(m => m.MovieId == id).ToList());
+
+            foreach (Showing element in viewModel.showings)
+            {
+                element.Movie = _context.Movies.SingleOrDefault(m => m.Id == element.MovieId);
+            }
+
+            return View(viewModel);
         }
 
         public ActionResult New()
