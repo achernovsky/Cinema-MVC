@@ -8,11 +8,11 @@ namespace Cinema_MVC.ViewModels
 {
     public class ShowingViewModel
     {
-        public List<Showing> showings { get; set; }
+        public List<Showing> Showings { get; set; }
 
         public ShowingViewModel(List<Showing> showings)
         {
-            this.showings = showings;
+            Showings = showings;
         }
     }
 }

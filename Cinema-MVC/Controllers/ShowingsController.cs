@@ -16,12 +16,16 @@ namespace Cinema_MVC.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             var movies = _context.Movies.ToList();
             var viewModel = new MovieShowingViewModel(movies, null);
             return View("MovieShowingForm", viewModel);
         }
+
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var showing = _context.Showings.SingleOrDefault(s => s.Id == id);
@@ -32,6 +36,8 @@ namespace Cinema_MVC.Controllers
             var viewModel = new MovieShowingViewModel(movies, showing);
             return View("MovieShowingForm", viewModel);
         }
+
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Save(Showing showing)
         {
             if (showing.Id == 0)
@@ -51,6 +57,8 @@ namespace Cinema_MVC.Controllers
             _context.SaveChanges();
             return RedirectToAction("", "Movies/Book/" + showing.MovieId);
         }
+
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Delete(int id)
         {
             var showingInDB = _context.Showings.SingleOrDefault(s => s.Id == id);
@@ -81,9 +89,19 @@ namespace Cinema_MVC.Controllers
             return View(viewModel); 
         }
 
-        public ActionResult OrderTicket(Ticket ticket)
+        public ActionResult CompleteOrder(Ticket ticket)
         {
-            return View();
+            var newTicket = new Ticket()
+            {
+                MovieId = ticket.MovieId,
+                Movie = _context.Movies.SingleOrDefault(t => t.Id == ticket.MovieId),
+                Showtime = ticket.Showtime,
+                rowNum = ticket.rowNum,
+                seatNum = ticket.seatNum
+            };
+            _context.Tickets.Add(newTicket);
+            _context.SaveChanges();
+            return View(newTicket);
         }
     }
 }

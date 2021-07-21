@@ -4,21 +4,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-    List<string> tackenSeats = new List<string>();
-    foreach (var ticket in Model.TicketsOrdered)
-    {
-        tackenSeats.Add(ticket.rowNum + " " + ticket.seatNum);
-    }
+@{ 
+    List<int> rowsTaken = new List<int>();
+    List<int> seatsTaken = new List<int>();
 }
+
+@{
+    IList<int> rows = new List<int>();
+    IList<int> seats = new List<int>();
+    for (int i = 1; i <= Model.Showing.numOfRows; i++)
+    {
+        var rowTaken = Model.TicketsOrdered.SingleOrDefault(t => t.rowNum == i);
+        if (rowTaken != null)
+        {
+            rowsTaken.Add(rowTaken.rowNum);
+        }
+
+        rows.Add(i);
+    }
+    for (int i = 1; i <= Model.Showing.numOfSeatsPerRow; i++)
+    {
+        var seatTaken = Model.TicketsOrdered.SingleOrDefault(t => t.seatNum == i);
+        if (seatTaken != null)
+        {
+            seatsTaken.Add(seatTaken.rowNum);
+        }
+        seats.Add(i);
+    }
+
+}
+
 <h2 class="text-center">@Model.Ticket.Movie.Name</h2>
 <h4 class="text-center">Showtime: @Model.Ticket.Showtime</h4>
 
-@using (Html.BeginForm("OrderTicket", "Showings", FormMethod.Post))
+@using (Html.BeginForm("CompleteOrder", "Showings", FormMethod.Post))
 {
-
-
-
+    <div class="form-group">
+        @Html.LabelFor(t => t.Ticket.rowNum)
+        @Html.DropDownListFor(t => t.Ticket.rowNum, new SelectList(rows), "", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(t => t.Ticket.seatNum)
+        @Html.DropDownListFor(t => t.Ticket.seatNum, new SelectList(seats), "", new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(t => t.Ticket.Showtime)
+    @Html.HiddenFor(t => t.Ticket.Movie)
+    @Html.HiddenFor(t => t.Ticket.MovieId)
+    @Html.HiddenFor(t => t.Ticket.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Order Tickets</button>
 }
 
-    
+

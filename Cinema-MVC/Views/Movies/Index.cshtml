@@ -3,13 +3,20 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{ 
+@{
     var movies = Model.Movies;
+}
+
+@{ 
+    if (User.IsInRole("Admin"))
+     {
+        <a href="/Movies/New/" class="btn btn-primary mt-10" role="button">Add New Movie</a>
+    }
 }
 
 <h1>Movies Showing</h1>
 
-@if(movies.Count == 0)
+@if (movies.Count == 0)
 {
     <div class="alert alert-info">
         There are no movies showing right now :(
@@ -17,23 +24,23 @@
 }
 else
 {
-<div class="row">
-    @foreach (var movie in movies)
-    {
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="@movie.ImageUrl" />
-                <div class="caption">
-                    <h3 class="text-center">@movie.Name</h3>
-                    <p class="text-center">
-                        <a href="@("/Movies/Book/"+movie.Id)" class="btn btn-success" role="button">Buy Tickets</a>
-                        <a href="@("/Movies/Details/"+movie.Id)" class="btn btn-primary" role="button">More Details</a>
-                    </p>
+    <div class="row">
+        @foreach (var movie in movies)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="@movie.ImageUrl" />
+                    <div class="caption">
+                        <h3 class="text-center">@movie.Name</h3>
+                        <p class="text-center">
+                            <a href="@("/Movies/Book/"+movie.Id)" class="btn btn-success" role="button">Buy Tickets</a>
+                            <a href="@("/Movies/Details/"+movie.Id)" class="btn btn-primary" role="button">More Details</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-     }
-</div>
+        }
+    </div>
 }
 
 

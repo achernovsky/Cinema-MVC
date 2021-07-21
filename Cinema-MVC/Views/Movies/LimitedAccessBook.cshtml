@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<a href="@("/Showings/New/")" class="btn btn-primary mt-10" role="button">Add New Showtime</a>
-
 <h3>Select Showtime:</h3>
 
 <table class="table">
@@ -16,8 +14,6 @@
         <td>@showing.Showtime.ToString()</td>
         <td>
             <a href="@("/Showings/Book/"+showing.Id)" class="btn btn-success" role="button">Book Tickets</a>
-            <a href="@("/Showings/Edit/"+showing.Id)" class="btn btn-primary" role="button">Edit Showtime</a>
-            <a href="@("/Showings/Delete/"+showing.Id)" class="btn btn-danger" role="button">Delete Showtime</a>
         </td>
     </tr>
     }

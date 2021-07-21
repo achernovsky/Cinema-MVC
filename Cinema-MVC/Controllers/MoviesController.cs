@@ -34,7 +34,10 @@ namespace Cinema_MVC.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            return View(movie);
+            if (User.IsInRole("Admin"))
+                return View(movie);
+            else
+                return View("LimitedAccessDetails", movie);
         }
 
         public ActionResult Book(int id)
@@ -46,14 +49,17 @@ namespace Cinema_MVC.Controllers
             else
                 viewModel = new ShowingViewModel(_context.Showings.Where(m => m.MovieId == id).ToList());
 
-            foreach (Showing element in viewModel.showings)
+            foreach (Showing element in viewModel.Showings)
             {
                 element.Movie = _context.Movies.SingleOrDefault(m => m.Id == element.MovieId);
             }
-
-            return View(viewModel);
+            if (User.IsInRole("Admin"))
+                return View(viewModel);
+            else
+                return View("LimitedAccessBook", viewModel);
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             var movie = new Movie();
@@ -61,6 +67,7 @@ namespace Cinema_MVC.Controllers
         }
 
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
@@ -80,6 +87,8 @@ namespace Cinema_MVC.Controllers
             _context.SaveChanges();
             return RedirectToAction("", "Movies");
         }
+
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -89,6 +98,7 @@ namespace Cinema_MVC.Controllers
             return View("MovieForm", movie);
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Delete(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);

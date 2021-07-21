@@ -1,0 +1,29 @@
+﻿@model Cinema_MVC.Models.Ticket
+@{
+    ViewBag.Title = "CompleteOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p class="alert alert-success mt-10">Tickets booked!</p>
+
+<h2>Your Order details:</h2>
+
+<table class="table">
+    <tr>
+        <td>Movie</td>
+        <td>@Model.Movie.Name</td>
+    </tr>
+    <tr>
+        <td>Showtime</td>
+        <td>@Model.Showtime</td>
+    </tr>
+    <tr>
+        <td>Seat Row</td>
+        <td>@Model.rowNum</td>
+    </tr>
+    <tr>
+        <td>Seat Number</td>
+        <td>@Model.seatNum</td>
+    </tr>
+</table>
+
