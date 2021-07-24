@@ -111,7 +111,7 @@ namespace Cinema_MVC.Controllers
             var seats = ticket.SeatsList.Split(' ');
             List<Ticket> tickets = new List<Ticket>();
             var movie = _context.Movies.SingleOrDefault(m => m.Id == ticket.MovieId);
-            //var auditorium = _context.Auditoriums.SingleOrDefault(m => m.ID == ticket.AuditoriumId);
+
 
             foreach (string seat in seats)
             {
@@ -123,11 +123,11 @@ namespace Cinema_MVC.Controllers
                 int column = int.Parse(rowAndColumn[1]);
                 Ticket item = new Ticket
                 {
-                    //Auditorium = auditorium,
+
                     Movie = movie,
                     rowNum = row,
                     seatNum = column,
-                    //AuditoriumId = auditorium.ID,
+  
                     MovieId = movie.Id,
                     Showtime = ticket.Showtime
                 };

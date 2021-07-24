@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\ShowingsController.cs" />
+    <Compile Include="Controllers\TheatersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -274,9 +275,30 @@
     <Compile Include="Migrations\202107241239158_EditSeatsListInTicket.Designer.cs">
       <DependentUpon>202107241239158_EditSeatsListInTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107241400351_AddTheater.cs" />
+    <Compile Include="Migrations\202107241400351_AddTheater.Designer.cs">
+      <DependentUpon>202107241400351_AddTheater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107241402160_AddTheater2.cs" />
+    <Compile Include="Migrations\202107241402160_AddTheater2.Designer.cs">
+      <DependentUpon>202107241402160_AddTheater2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107241405269_AddTheaterToShowing.cs" />
+    <Compile Include="Migrations\202107241405269_AddTheaterToShowing.Designer.cs">
+      <DependentUpon>202107241405269_AddTheaterToShowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107241416497_AddTheaterToShowing2.cs" />
+    <Compile Include="Migrations\202107241416497_AddTheaterToShowing2.Designer.cs">
+      <DependentUpon>202107241416497_AddTheaterToShowing2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107241417354_AddTheaterToShowing3.cs" />
+    <Compile Include="Migrations\202107241417354_AddTheaterToShowing3.Designer.cs">
+      <DependentUpon>202107241417354_AddTheaterToShowing3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\RoleName.cs" />
+    <Compile Include="Models\Theater.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -286,6 +308,7 @@
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\TheatersViewModel.cs" />
     <Compile Include="ViewModels\CompleteOrderViewModel.cs" />
     <Compile Include="ViewModels\MovieShowingViewModel.cs" />
     <Compile Include="ViewModels\MoviesViewModel.cs" />
@@ -360,6 +383,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Theaters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -446,6 +470,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107241239158_EditSeatsListInTicket.resx">
       <DependentUpon>202107241239158_EditSeatsListInTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107241400351_AddTheater.resx">
+      <DependentUpon>202107241400351_AddTheater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107241402160_AddTheater2.resx">
+      <DependentUpon>202107241402160_AddTheater2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107241405269_AddTheaterToShowing.resx">
+      <DependentUpon>202107241405269_AddTheaterToShowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107241416497_AddTheaterToShowing2.resx">
+      <DependentUpon>202107241416497_AddTheaterToShowing2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107241417354_AddTheaterToShowing3.resx">
+      <DependentUpon>202107241417354_AddTheaterToShowing3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

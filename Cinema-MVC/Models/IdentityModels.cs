@@ -25,6 +25,7 @@ namespace Cinema_MVC.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<Showing> Showings { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Theater> Theaters { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

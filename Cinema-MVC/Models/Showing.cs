@@ -19,13 +19,6 @@ namespace Cinema_MVC.Models
         [Display(Name = "Movie")]
         public int MovieId { get; set; }
 
-        public int numOfRows { get; set; }
-        public int numOfSeatsPerRow { get; set; }
-
-        public Showing()
-        {
-            numOfRows = 8;
-            numOfSeatsPerRow = 16;
-        }
+        public Theater Theater { get; set; }
     }
 }
