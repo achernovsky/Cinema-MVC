@@ -1,0 +1,30 @@
+﻿@model Cinema_MVC.ViewModels.TheatersViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Theaters List</h2>
+
+<a href="@("/Theaters/New/")" class="btn btn-primary mt-10" role="button">Add New Theater</a>
+
+<table class="table">
+    <tr class="table-info">
+        <th>Theater Number</th>
+        <th>Rows</th>
+        <th>Seats Per Row</th>
+        <th></th>
+    </tr>
+   @foreach (var theater in Model.Theaters)
+    {
+        <tr>
+            <td>@theater.TheaterNum</td>
+            <td>@theater.NumOfRows</td>
+            <td>@theater.NumOfSeatsPerRow</td>
+            <td>
+                <a href="@("/Theaters/Edit/"+theater.Id)" class="btn btn-primary" role="button">Edit Theater</a>
+                <a href="@("/Theaters/Delete/"+theater.Id)" class="btn btn-danger" role="button">Delete Theater</a>
+            </td>
+        </tr>
+    }
+</table>

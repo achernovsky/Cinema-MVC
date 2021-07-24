@@ -20,5 +20,6 @@ namespace Cinema_MVC.Models
         public int MovieId { get; set; }
 
         public Theater Theater { get; set; }
+        public int TheaterId { get; set; }
     }
 }
