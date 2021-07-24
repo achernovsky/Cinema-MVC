@@ -80,13 +80,14 @@ namespace Cinema_MVC.Controllers
             if (showing == null)
                 return HttpNotFound();
 
-            var ticketsOrdered = _context.Tickets.Where(t => t.Showtime == showing.Showtime).ToList();
+            var ticketsOrdered = _context.Tickets.Where(t => t.Showtime == showing.Showtime && t.TheaterId == showing.TheaterId).ToList();
 
+            var theater = _context.Theaters.SingleOrDefault(m => m.Id == showing.TheaterId);
             var movie = _context.Movies.SingleOrDefault(m => m.Id == showing.MovieId);
             if (movie == null)
                 return HttpNotFound();
 
-            var ticket = new Ticket { Movie = movie, MovieId = movie.Id, Showtime = showing.Showtime };
+            var ticket = new Ticket { Movie = movie, MovieId = movie.Id, Showtime = showing.Showtime, Theater = theater, TheaterId = theater.Id };
 
             var viewModel = new TicketsViewModel { Ticket = ticket, TicketsOrdered = ticketsOrdered, Showing = showing };
             return View(viewModel); 
@@ -94,51 +95,32 @@ namespace Cinema_MVC.Controllers
 
         public ActionResult CompleteOrder(Ticket ticket)
         {
-            /*            var newTicket = new Ticket()
-                        {
-                            MovieId = ticket.MovieId,
-                            Movie = _context.Movies.SingleOrDefault(t => t.Id == ticket.MovieId),
-                            Showtime = ticket.Showtime,
-                            rowNum = ticket.rowNum,
-                            seatNum = ticket.seatNum
-                        };
-                        _context.Tickets.Add(newTicket);
-                        _context.SaveChanges();
-                        return View(newTicket);*/
-
-
-
-
- 
-
-            var seats = ticket.SeatsList.Split(' ');
-            List<Ticket> tickets = new List<Ticket>();
+            var seatsArray = ticket.SeatsList.Split(' ');
             var movie = _context.Movies.SingleOrDefault(m => m.Id == ticket.MovieId);
+            var theater = _context.Theaters.SingleOrDefault(m => m.Id == ticket.TheaterId);
 
+            List<Ticket> tickets = new List<Ticket>();
 
-            foreach (string seat in seats)
+            for (int i = 0; i < seatsArray.Length; i++)
             {
-                if (seat == "")
-                    break;
-
-                var rowAndColumn = seat.Split(',');
-                int row = int.Parse(rowAndColumn[0]);
-                int column = int.Parse(rowAndColumn[1]);
-                Ticket item = new Ticket
+                var seat = seatsArray[i].Split(',');
+                int rowNum = int.Parse(seat[0]);
+                int seatNum = int.Parse(seat[1]);
+                Ticket newTicket = new Ticket
                 {
-
-                    Movie = movie,
-                    rowNum = row,
-                    seatNum = column,
-  
                     MovieId = movie.Id,
+                    Movie = movie,
+                    TheaterId = theater.Id,
+                    Theater = theater,
+                    rowNum = rowNum,
+                    seatNum = seatNum,
                     Showtime = ticket.Showtime
                 };
-                _context.Tickets.Add(item);
-                tickets.Add(item);
+                _context.Tickets.Add(newTicket);
+                tickets.Add(newTicket);
             };
-            var viewModel = new CompleteOrderViewModel { Tickets = tickets, Movie = movie };
 
+            var viewModel = new CompleteOrderViewModel { Tickets = tickets, Movie = movie };
             _context.SaveChanges();
 
             return View(viewModel);
