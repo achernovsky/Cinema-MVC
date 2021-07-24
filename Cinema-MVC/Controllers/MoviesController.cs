@@ -52,6 +52,7 @@ namespace Cinema_MVC.Controllers
             foreach (Showing element in viewModel.Showings)
             {
                 element.Movie = _context.Movies.SingleOrDefault(m => m.Id == element.MovieId);
+                element.Theater = _context.Theaters.SingleOrDefault(m => m.Id == element.TheaterId);
             }
             if (User.IsInRole("Admin"))
                 return View(viewModel);
