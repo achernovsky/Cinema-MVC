@@ -1,4 +1,4 @@
-﻿@model Cinema_MVC.Models.Ticket
+﻿@model Cinema_MVC.ViewModels.CompleteOrderViewModel
 @{
     ViewBag.Title = "CompleteOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,15 +15,25 @@
     </tr>
     <tr>
         <td>Showtime</td>
-        <td>@Model.Showtime</td>
-    </tr>
-    <tr>
-        <td>Seat Row</td>
-        <td>@Model.rowNum</td>
-    </tr>
-    <tr>
-        <td>Seat Number</td>
-        <td>@Model.seatNum</td>
+        <td>@Model.Tickets[0].Showtime</td>
     </tr>
 </table>
+
+<p>Seats Ordered</p>
+<table class="table">
+    <tr class="table-info">
+        <th>Ticket</th>
+        <th>Row</th>
+        <th>Seat Number</th>
+    </tr>
+    @for (int i = 0; i < Model.Tickets.Count; i++)
+    {
+        <tr class="table-light">
+            <td>@(i + 1)</td>
+            <td>@Model.Tickets[i].rowNum</td>
+            <td>@Model.Tickets[i].seatNum</td>
+        </tr>
+}
+</table>
+<a class="btn btn-primary" href="@("/Movies")"> Back to main page</a>
 

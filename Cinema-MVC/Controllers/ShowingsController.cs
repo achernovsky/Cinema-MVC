@@ -91,17 +91,54 @@ namespace Cinema_MVC.Controllers
 
         public ActionResult CompleteOrder(Ticket ticket)
         {
-            var newTicket = new Ticket()
+            /*            var newTicket = new Ticket()
+                        {
+                            MovieId = ticket.MovieId,
+                            Movie = _context.Movies.SingleOrDefault(t => t.Id == ticket.MovieId),
+                            Showtime = ticket.Showtime,
+                            rowNum = ticket.rowNum,
+                            seatNum = ticket.seatNum
+                        };
+                        _context.Tickets.Add(newTicket);
+                        _context.SaveChanges();
+                        return View(newTicket);*/
+
+
+
+
+ 
+
+            var seats = ticket.SeatsList.Split(' ');
+            List<Ticket> tickets = new List<Ticket>();
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == ticket.MovieId);
+            //var auditorium = _context.Auditoriums.SingleOrDefault(m => m.ID == ticket.AuditoriumId);
+
+            foreach (string seat in seats)
             {
-                MovieId = ticket.MovieId,
-                Movie = _context.Movies.SingleOrDefault(t => t.Id == ticket.MovieId),
-                Showtime = ticket.Showtime,
-                rowNum = ticket.rowNum,
-                seatNum = ticket.seatNum
+                if (seat == "")
+                    break;
+
+                var rowAndColumn = seat.Split(',');
+                int row = int.Parse(rowAndColumn[0]);
+                int column = int.Parse(rowAndColumn[1]);
+                Ticket item = new Ticket
+                {
+                    //Auditorium = auditorium,
+                    Movie = movie,
+                    rowNum = row,
+                    seatNum = column,
+                    //AuditoriumId = auditorium.ID,
+                    MovieId = movie.Id,
+                    Showtime = ticket.Showtime
+                };
+                _context.Tickets.Add(item);
+                tickets.Add(item);
             };
-            _context.Tickets.Add(newTicket);
+            var viewModel = new CompleteOrderViewModel { Tickets = tickets, Movie = movie };
+
             _context.SaveChanges();
-            return View(newTicket);
+
+            return View(viewModel);
         }
     }
 }

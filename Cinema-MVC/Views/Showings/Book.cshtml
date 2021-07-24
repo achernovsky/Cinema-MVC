@@ -4,49 +4,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{ 
-    List<int> rowsTaken = new List<int>();
-    List<int> seatsTaken = new List<int>();
+@{
+    List<int[]> seatsTaken = new List<int[]>();
+    IList<int> rows = new List<int>();
+    IList<int> seats = new List<int>();
 }
 
 @{
-    IList<int> rows = new List<int>();
-    IList<int> seats = new List<int>();
+    Model.TicketsOrdered.ForEach(t =>
+    {
+        seatsTaken.Add(new int[] { t.rowNum, t.seatNum });
+    });
+
     for (int i = 1; i <= Model.Showing.numOfRows; i++)
     {
-        var rowTaken = Model.TicketsOrdered.SingleOrDefault(t => t.rowNum == i);
-        if (rowTaken != null)
-        {
-            rowsTaken.Add(rowTaken.rowNum);
-        }
-
         rows.Add(i);
     }
-    for (int i = 1; i <= Model.Showing.numOfSeatsPerRow; i++)
+    for (int j = 1; j <= Model.Showing.numOfSeatsPerRow; j++)
     {
-        var seatTaken = Model.TicketsOrdered.SingleOrDefault(t => t.seatNum == i);
-        if (seatTaken != null)
-        {
-            seatsTaken.Add(seatTaken.rowNum);
-        }
-        seats.Add(i);
+        seats.Add(j);
     }
-
 }
 
 <h2 class="text-center">@Model.Ticket.Movie.Name</h2>
 <h4 class="text-center">Showtime: @Model.Ticket.Showtime</h4>
 
-@using (Html.BeginForm("CompleteOrder", "Showings", FormMethod.Post))
+@*<form id="main-form" asp-action="CompleteOrder" method="post">*@
+
+@using (Html.BeginForm("CompleteOrder", "Showings", FormMethod.Post, new { id = "main-form" }))
 {
-    <div class="form-group">
-        @Html.LabelFor(t => t.Ticket.rowNum)
-        @Html.DropDownListFor(t => t.Ticket.rowNum, new SelectList(rows), "", new { @class = "form-control" })
+    <h4>Select your seats:</h4>
+    <div>
+        @for (int i = 1; i <= Model.Showing.numOfRows; i++)
+        {
+            <div class="row">
+                @for (int j = 1; j <= Model.Showing.numOfSeatsPerRow; j++)
+                {
+                    var taken = seatsTaken.Find(s => (s[0] == i && s[1] == j));
+                    if (taken != null)
+                    {
+                        <div class="square red col-md-1"></div>
+                    }
+                    else
+                    {
+                        <div class="square blue col-md-1" onclick="markSeat(@i,@j)"></div>
+                    }
+                }
+            </div>
+        }
     </div>
-    <div class="form-group">
-        @Html.LabelFor(t => t.Ticket.seatNum)
-        @Html.DropDownListFor(t => t.Ticket.seatNum, new SelectList(seats), "", new { @class = "form-control" })
-    </div>
+    @*    <div class="form-group">
+            @Html.LabelFor(t => t.Ticket.rowNum)
+            @Html.DropDownListFor(t => t.Ticket.rowNum, new SelectList(rows), "", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.Ticket.seatNum)
+            @Html.DropDownListFor(t => t.Ticket.seatNum, new SelectList(seats), "", new { @class = "form-control" })
+        </div>*@
+
+    <input type="hidden" class="seatsOrdered" id="seatsOrdered" asp-for="Ticket.SeatsList" asp />
+    Model.Ticket.SeatsList="1,2";
+
+
+    @Html.HiddenFor(t => t.Ticket.SeatsList)
     @Html.HiddenFor(t => t.Ticket.Showtime)
     @Html.HiddenFor(t => t.Ticket.Movie)
     @Html.HiddenFor(t => t.Ticket.MovieId)
@@ -55,4 +75,32 @@
     <button type="submit" class="btn btn-primary">Order Tickets</button>
 }
 
+@section scripts
+{
+    <script>
+        let seatsOrdered = document.getElementById("seatsOrdered");
+        let numOfSeatsChosen = 0;
+        let chosenSeats = [];
+        let result;
 
+        const markSeat = (row, seat) => {
+            if (event.target.classList.contains("green")) {
+                event.target.classList.remove("green")
+                chosenSeats = chosenSeats.filter(item => {
+                    return item[0] !== row || item[1] !== seat
+                })
+            }
+            else {
+                event.target.classList.add("green")
+                chosenSeats.push([row, seat])
+            }
+            numOfSeatsChosen = document.querySelectorAll(".green").length;
+
+            result = "";
+            chosenSeats.forEach(el => result += el + " ");
+            seatsOrdered.value = result;
+            console.log(result);
+            $('main-form').add(result);
+        }
+    </script>
+}

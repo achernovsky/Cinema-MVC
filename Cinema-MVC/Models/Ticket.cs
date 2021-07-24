@@ -13,6 +13,6 @@ namespace Cinema_MVC.Models
         public DateTime Showtime { get; set; }
         public int rowNum { get; set; }
         public int seatNum { get; set; }
-        public int numOfTickets { get; set; }
+        public string SeatsList { get; set; }
     }
 }
