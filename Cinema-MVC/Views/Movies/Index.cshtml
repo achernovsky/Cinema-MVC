@@ -7,13 +7,6 @@
     var movies = Model.Movies;
 }
 
-@{ 
-    if (User.IsInRole("Admin"))
-    {
-        <a href="/Movies/New/" class="btn btn-primary mt-10" role="button">Add New Movie</a>
-    }
-}
-
 <h1>Movies Showing</h1>
 
 @if (movies.Count == 0)

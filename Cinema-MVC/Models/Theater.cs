@@ -11,12 +11,15 @@ namespace Cinema_MVC.Models
         public int Id { get; set; }
 
         [Required()]
+        [Display(Name = "Theater Number")]
         public int TheaterNum { get; set; }
 
         [Required()]
+        [Display(Name = "Number of Rows")]
         public int NumOfRows { get; set; }
 
         [Required()]
+        [Display(Name = "Number of Seats per Row")]
         public int NumOfSeatsPerRow { get; set; }
     }
 }
