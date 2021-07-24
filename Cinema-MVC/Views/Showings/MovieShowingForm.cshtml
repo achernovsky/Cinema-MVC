@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{ 
+    var theaters = Model.Theaters;
+}
 <h2>Movie Showing Form</h2>
 
 @using (Html.BeginForm("Save", "Showings", FormMethod.Post))
@@ -11,6 +14,10 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Showing.MovieId)
         @Html.DropDownListFor(m => m.Showing.MovieId, new SelectList(Model.Movies, "Id", "Name"), "", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Showing.TheaterId)
+        @Html.DropDownListFor(m => m.Showing.TheaterId, new SelectList(theaters, "Id", "TheaterNum"), "", new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Showing.Showtime)

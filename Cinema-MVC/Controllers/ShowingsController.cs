@@ -20,8 +20,9 @@ namespace Cinema_MVC.Controllers
         [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
+            var theaters = _context.Theaters.ToList();
             var movies = _context.Movies.ToList();
-            var viewModel = new MovieShowingViewModel(movies, null);
+            var viewModel = new MovieShowingViewModel(theaters, movies, null);
             return View("MovieShowingForm", viewModel);
         }
 
@@ -32,8 +33,9 @@ namespace Cinema_MVC.Controllers
             if (showing == null)
                 return HttpNotFound();
 
+            var theaters = _context.Theaters.ToList();
             var movies = _context.Movies.ToList();
-            var viewModel = new MovieShowingViewModel(movies, showing);
+            var viewModel = new MovieShowingViewModel(theaters, movies, showing);
             return View("MovieShowingForm", viewModel);
         }
 
@@ -44,6 +46,7 @@ namespace Cinema_MVC.Controllers
             {
                 var newShowing = new Showing()
                 {
+                    Theater = _context.Theaters.SingleOrDefault(s => s.Id == showing.TheaterId),
                     Movie = _context.Movies.SingleOrDefault(s => s.Id == showing.MovieId),
                     Showtime = showing.Showtime
                 };

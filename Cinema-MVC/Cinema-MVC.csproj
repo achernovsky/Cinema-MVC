@@ -299,6 +299,10 @@
     <Compile Include="Migrations\202107241553033_AddTheaterIdToShowing.Designer.cs">
       <DependentUpon>202107241553033_AddTheaterIdToShowing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107241614356_AddTheaterIdToTicket.cs" />
+    <Compile Include="Migrations\202107241614356_AddTheaterIdToTicket.Designer.cs">
+      <DependentUpon>202107241614356_AddTheaterIdToTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\RoleName.cs" />
@@ -493,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107241553033_AddTheaterIdToShowing.resx">
       <DependentUpon>202107241553033_AddTheaterIdToShowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107241614356_AddTheaterIdToTicket.resx">
+      <DependentUpon>202107241614356_AddTheaterIdToTicket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
