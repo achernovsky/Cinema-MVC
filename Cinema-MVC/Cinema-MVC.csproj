@@ -307,15 +307,17 @@
     <Compile Include="Migrations\202107241614356_AddTheaterIdToTicket.Designer.cs">
       <DependentUpon>202107241614356_AddTheaterIdToTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107281436268_RemoveOrderAndUser.cs" />
+    <Compile Include="Migrations\202107281436268_RemoveOrderAndUser.Designer.cs">
+      <DependentUpon>202107281436268_RemoveOrderAndUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Theater.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
-    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Showing.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -507,6 +509,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107241614356_AddTheaterIdToTicket.resx">
       <DependentUpon>202107241614356_AddTheaterIdToTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107281436268_RemoveOrderAndUser.resx">
+      <DependentUpon>202107281436268_RemoveOrderAndUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
