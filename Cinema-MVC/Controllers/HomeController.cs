@@ -10,9 +10,13 @@ namespace Cinema_MVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Index", "Movies");
         }
-
+/*
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -25,6 +29,6 @@ namespace Cinema_MVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }*/
     }
 }

@@ -10,6 +10,5 @@ namespace Cinema_MVC.ViewModels
     {
         public List<Ticket> Tickets { get; set; }
         public Movie Movie { get; set; }
-        //public Auditorium Auditorium { get; set; }
     }
 }

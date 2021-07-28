@@ -1,0 +1,31 @@
+﻿@model Cinema_MVC.ViewModels.ShowingViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movie Showings</h2>
+
+<table class="table">
+    <tr class="table-info">
+        <th>Movie</th>
+        <th>Theater</th>
+        <th>showtime</th>
+        <th></th>
+    </tr>
+    @foreach (var showing in Model.Showings)
+    {
+
+        var movie = showing.Movie;
+
+        <tr>
+            <td>@movie.Name</td>
+            <td>@showing.Theater.TheaterNum</td>
+            <td>@showing.Showtime</td>
+            <td>
+                <a href="@("/Showings/Edit/"+showing.Id)" class="btn btn-primary" role="button">Edit Showing</a>
+                <a href="@("/Showings/Delete/"+showing.Id)" class="btn btn-danger" role="button">Delete Showing</a>
+            </td>
+        </tr>
+    }
+</table>

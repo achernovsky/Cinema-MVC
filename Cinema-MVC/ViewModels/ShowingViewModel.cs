@@ -12,7 +12,7 @@ namespace Cinema_MVC.ViewModels
 
         public ShowingViewModel(List<Showing> showings)
         {
-            Showings = showings;
+            Showings = showings.OrderBy(s => s.Showtime).ToList();
         }
     }
 }

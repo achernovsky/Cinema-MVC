@@ -27,7 +27,18 @@ namespace Cinema_MVC.Controllers
             };
             return View(viewModel);
         }
-        
+
+        public ActionResult List()
+        {
+            var movies = _context.Movies.ToList();
+
+            var viewModel = new MoviesViewModel()
+            {
+                Movies = movies
+            };
+            return View(viewModel);
+        }
+
         public ActionResult Details(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);

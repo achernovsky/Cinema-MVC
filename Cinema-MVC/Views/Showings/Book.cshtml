@@ -31,7 +31,7 @@
 <h2 class="text-center">@Model.Ticket.Movie.Name</h2>
 <h4 class="text-center">Showtime: @Model.Ticket.Showtime</h4>
 
-@*<form id="main-form" asp-action="CompleteOrder" method="post">*@
+@*<form asp-action="CompleteOrder" method="post">*@
 
 @using (Html.BeginForm("CompleteOrder", "Showings", FormMethod.Post, new { id = "main-form" }))
 {
@@ -55,6 +55,8 @@
             </div>
         }
     </div>
+    <br />
+    <br />
     @*    <div class="form-group">
             @Html.LabelFor(t => t.Ticket.rowNum)
             @Html.DropDownListFor(t => t.Ticket.rowNum, new SelectList(rows), "", new { @class = "form-control" })
@@ -64,28 +66,32 @@
             @Html.DropDownListFor(t => t.Ticket.seatNum, new SelectList(seats), "", new { @class = "form-control" })
         </div>*@
 
-    <input type="hidden" class="seatsOrdered" id="seatsOrdered" asp-for="Ticket.SeatsList" asp />
-    Model.Ticket.SeatsList = "1,2";
+    <input type="hidden" id="seatsList" name="seatsList" value="@Model.Ticket.SeatsList" />
+    <input type="hidden" id="Showtime" name="Showtime" value="@Model.Ticket.Showtime" />
+    <input type="hidden" id="TheaterId" name="TheaterId" value="@Model.Ticket.TheaterId" />
+    <input type="hidden" id="MovieId" name="MovieId" value="@Model.Ticket.MovieId" />
+    <input type="hidden" id="Id" name="Id" value="@Model.Ticket.Id" />
+    @*Model.Ticket.SeatsList = "1,2";*@
 
 
-    @Html.HiddenFor(t => t.Ticket.SeatsList)
-    @Html.HiddenFor(t => t.Ticket.Showtime)
-    @Html.HiddenFor(t => t.Ticket.Theater)
-    @Html.HiddenFor(t => t.Ticket.TheaterId)
-    @Html.HiddenFor(t => t.Ticket.Movie)
-    @Html.HiddenFor(t => t.Ticket.MovieId)
-    @Html.HiddenFor(t => t.Ticket.Id)
+    @*    @Html.HiddenFor(t => t.Ticket.SeatsList)
+        @Html.HiddenFor(t => t.Ticket.Showtime)
+        @Html.HiddenFor(t => t.Ticket.Theater)
+        @Html.HiddenFor(t => t.Ticket.TheaterId)
+        @Html.HiddenFor(t => t.Ticket.Movie)
+        @Html.HiddenFor(t => t.Ticket.MovieId)
+        @Html.HiddenFor(t => t.Ticket.Id)*@
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Order Tickets</button>
+    <button type="button" name="Submit" value="Submit" id="btnSubmit" class="btn btn-primary">Order Tickets</button>
 }
 
 @section scripts
 {
     <script>
-        let seatsOrdered = document.getElementById("seatsOrdered");
+        let seatsList = document.getElementById("seatsList");
         let numOfSeatsChosen = 0;
         let chosenSeats = [];
-        let result;
+        let seatsString = "";
 
         const markSeat = (row, seat) => {
             if (event.target.classList.contains("green")) {
@@ -100,11 +106,42 @@
             }
             numOfSeatsChosen = document.querySelectorAll(".green").length;
 
-            result = "";
-            chosenSeats.forEach(el => result += el + " ");
-            seatsOrdered.value = result;
-            console.log(result);
-            $('main-form').add(result);
+            seatsString = "";
+            chosenSeats.forEach(s => seatsString += s + " ");
+            console.log(chosenSeats);
+            seatsList.value = seatsString;
+            console.log(seatsString);
+            formData.SeatsList = seatsString;
+            console.log(formData);
         }
+
+        var formData = new FormData();
+        formData.SeatsList = seatsString;
+        formData.Showtime = $("#Showtime").val();
+        formData.TheaterId = parseInt($("#TheaterId").val());
+        formData.MovieId = parseInt($("#MovieId").val());
+        formData.Id = parseInt($("#Id").val());
+
+
+        $('#btnSubmit').click(function () {
+            console.log("Clicked");
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: "/Showings/CompleteOrder",
+                data: JSON.stringify(formData),
+                dataType: 'json',
+                contentType: 'application/json',
+                processData: false,
+                success: function (result) {
+                    if (result.status == "Success") {
+                        console.log("Success")
+                        location.href = result.url;
+                    }
+                }
+            });
+
+        });
+
     </script>
 }

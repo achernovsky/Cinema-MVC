@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
@@ -386,12 +389,14 @@
     <Content Include="Views\Movies\Book.cshtml" />
     <Content Include="Views\Showings\MovieShowingForm.cshtml" />
     <Content Include="Views\Showings\Book.cshtml" />
-    <Content Include="Views\Showings\CompleteOrder.cshtml" />
+    <Content Include="Views\Showings\OrderSummary.cshtml" />
     <Content Include="Views\Movies\LimitedAccessDetails.cshtml" />
     <Content Include="Views\Movies\LimitedAccessBook.cshtml" />
     <Content Include="Views\Theaters\Index.cshtml" />
     <Content Include="Views\Theaters\TheaterForm.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Showings\Index.cshtml" />
+    <Content Include="Views\Movies\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

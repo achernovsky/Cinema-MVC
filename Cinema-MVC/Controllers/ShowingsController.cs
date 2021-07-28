@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Cinema_MVC.Models;
 using Cinema_MVC.ViewModels;
+using AjaxControlToolkit;
 
 namespace Cinema_MVC.Controllers
 {
@@ -15,6 +16,20 @@ namespace Cinema_MVC.Controllers
         public ShowingsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        [Authorize(Roles = RoleName.Admin)]
+        public ActionResult Index()
+        {
+            var showings = _context.Showings.ToList();
+            showings.ForEach(s =>
+            {
+                s.Movie = _context.Movies.SingleOrDefault(m => s.MovieId == m.Id);
+                s.Theater = _context.Theaters.SingleOrDefault(t => s.TheaterId == t.Id);
+            });
+            var viewModel = new ShowingViewModel(showings);
+
+            return View(viewModel);
         }
 
         [Authorize(Roles = RoleName.Admin)]
@@ -93,15 +108,19 @@ namespace Cinema_MVC.Controllers
             return View(viewModel); 
         }
 
+        [HttpPost]
         public ActionResult CompleteOrder(Ticket ticket)
         {
+            if (ticket == null)
+                return HttpNotFound();
+
             var seatsArray = ticket.SeatsList.Split(' ');
             var movie = _context.Movies.SingleOrDefault(m => m.Id == ticket.MovieId);
             var theater = _context.Theaters.SingleOrDefault(m => m.Id == ticket.TheaterId);
 
             List<Ticket> tickets = new List<Ticket>();
 
-            for (int i = 0; i < seatsArray.Length; i++)
+            for (int i = 0; i < seatsArray.Length - 1; i++)
             {
                 var seat = seatsArray[i].Split(',');
                 int rowNum = int.Parse(seat[0]);
@@ -122,6 +141,35 @@ namespace Cinema_MVC.Controllers
 
             var viewModel = new CompleteOrderViewModel { Tickets = tickets, Movie = movie };
             _context.SaveChanges();
+
+            TempData["ViewModel"] = viewModel;
+
+            return Json(new
+            {
+                status = "Success",
+                url = Url.Action("OrderSummary", "Showings", viewModel)
+            });
+
+
+  /*          return RedirectToAction("OrderSummary", "Showings", viewModel);*/
+        }
+
+        public ActionResult OrderSummary(CompleteOrderViewModel viewModel)
+        {
+            if (viewModel == null)
+                return HttpNotFound();
+
+
+
+            viewModel = (CompleteOrderViewModel)TempData["ViewModel"];
+
+/*            return Json(new
+            {
+                status = "Success",
+                url = Url.Action("OrderSummary", "Showings", viewModel)
+            });
+
+            return Json(viewModel, JsonRequestBehavior.AllowGet);*/
 
             return View(viewModel);
         }
